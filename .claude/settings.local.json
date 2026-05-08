@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(pip install *)"
+      "Bash(pip install *)",
+      "Bash(streamlit run *)",
+      "Bash(pytest test_app.py -v)"
     ]
   }
 }
