@@ -34,13 +34,13 @@ def classify_rsrp(rsrp):
 
 
 def get_color_rgb(rsrp):
-    """与 app.py 保持一致的 RSRP 颜色映射逻辑"""
+    """与 app.py 保持一致的 RSRP 颜色映射逻辑（科技风配色）"""
     if rsrp > -90:
-        return [46, 204, 113]   # 绿色
+        return [0, 229, 255]     # 青色 Cyan  优秀
     elif rsrp < -110:
-        return [231, 76, 60]    # 红色
+        return [255, 0, 85]      # 霓虹粉 Magenta  弱覆盖
     else:
-        return [243, 156, 18]   # 橙色
+        return [170, 0, 255]     # 电紫 Purple  中等
 
 
 class TestColorMapping:
@@ -49,27 +49,27 @@ class TestColorMapping:
     def test_excellent_signal(self):
         """RSRP > -90 dBm 应标记为优秀并返回绿色"""
         assert classify_rsrp(-89) == "优秀"
-        assert get_color_rgb(-89) == [46, 204, 113]
+        assert get_color_rgb(-89) == [0, 229, 255]
 
     def test_poor_signal(self):
         """RSRP < -110 dBm 应标记为弱覆盖并返回红色"""
         assert classify_rsrp(-111) == "弱覆盖"
-        assert get_color_rgb(-111) == [231, 76, 60]
+        assert get_color_rgb(-111) == [255, 0, 85]
 
     def test_medium_signal(self):
         """-110 <= RSRP <= -90 dBm 应标记为中等并返回橙色"""
         assert classify_rsrp(-100) == "中等"
-        assert get_color_rgb(-100) == [243, 156, 18]
+        assert get_color_rgb(-100) == [170, 0, 255]
 
     def test_boundary_negative_90(self):
         """边界值 -90 dBm 应归为中等（橙色）"""
         assert classify_rsrp(-90) == "中等"
-        assert get_color_rgb(-90) == [243, 156, 18]
+        assert get_color_rgb(-90) == [170, 0, 255]
 
     def test_boundary_negative_110(self):
         """边界值 -110 dBm 应归为中等（橙色）"""
         assert classify_rsrp(-110) == "中等"
-        assert get_color_rgb(-110) == [243, 156, 18]
+        assert get_color_rgb(-110) == [170, 0, 255]
 
 
 # ==================== 筛选逻辑测试 ====================

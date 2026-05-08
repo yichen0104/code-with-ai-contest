@@ -1,0 +1,761 @@
+╭─── Claude Code v2.1.133 ─────────────────────────────────────────────────────╮
+│                                                  │ Tips for getting started  │
+│                   Welcome back!                  │ Run /init to create a CL… │
+│                                                  │ ───────────────────────── │
+│                      ▐▛███▜▌                     │ What's new                │
+│                     ▝▜█████▛▘                    │ Added `worktree.baseRef`… │
+│                       ▘▘ ▝▝                      │ Added `sandbox.bwrapPath… │
+│                                                  │ Added `parentSettingsBeh… │
+│      deepseek-v4-flash · API Usage Billing       │ /release-notes for more   │
+│   ~\OneDrive\桌面\ai-test\code-with-ai-contest   │                           │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+> 帮我把地图做的更精致，科技效果更强                                            
+
+● Let me first explore the project to understand what we're working with.
+
+● Explore(Explore project structure)
+  ⎿  Done (17 tool uses · 47.6k tokens · 1m 2s)
+  (ctrl+o to expand)
+
+● Let me look at the current screenshots and source code to understand the
+  visual state.
+
+  Read 5 files (ctrl+o to expand)
+
+● Let me check the test file to understand what tests reference the color
+  values.
+
+  Read 1 file (ctrl+o to expand)
+
+● Now I have a complete understanding. Let me implement the enhancements.
+
+● Now write the enhanced app.py with the complete tech/makeover:
+
+● Write(app.py)
+  ⎿  Added 296 lines, removed 62 lines
+        6  # ==================== 页面配置 ====================
+        7  st.set_page_config(page_title="5G 信号可视化看板", layout="wid
+           e")
+        8  
+        9 +# ==================== 科技风格 CSS ====================      
+       10 +st.markdown("""                                               
+       11 +<style>                                                       
+       12 +    /* 暗色科技主题 */                                        
+       13 +    .stApp {                                                  
+       14 +        background: #0a0e17;                                  
+       15 +        color: #e0e0e0;                                       
+       16 +    }                                                         
+       17 +                                                              
+       18 +    /* 玻璃态 KPI 卡片 */                                     
+       19 +    .kpi-card {                                               
+       20 +        background: linear-gradient(135deg, rgba(20, 30, 60, 0
+          +.9), rgba(10, 15, 30, 0.9));                                  
+       21 +        border: 1px solid rgba(0, 200, 255, 0.2);             
+       22 +        border-radius: 16px;                                  
+       23 +        padding: 20px;                                        
+       24 +        box-shadow: 0 8px 32px 0 rgba(0, 200, 255, 0.05), inse
+          +t 0 1px 0 rgba(255, 255, 255, 0.05);                          
+       25 +        backdrop-filter: blur(10px);                          
+       26 +        text-align: center;                                   
+       27 +        transition: all 0.3s ease;                            
+       28 +    }                                                         
+       29 +    .kpi-card:hover {                                         
+       30 +        box-shadow: 0 8px 32px 0 rgba(0, 200, 255, 0.2), inset
+          + 0 1px 0 rgba(255, 255, 255, 0.1);                            
+       31 +        border-color: rgba(0, 200, 255, 0.5);                 
+       32 +        transform: translateY(-2px);                          
+       33 +    }                                                         
+       34 +    .kpi-title {                                              
+       35 +        font-size: 13px;                                      
+       36 +        color: rgba(0, 229, 255, 0.7);                        
+       37 +        text-transform: uppercase;                            
+       38 +        letter-spacing: 2px;                                  
+       39 +        margin-bottom: 8px;                                   
+       40 +        font-family: 'SF Mono', 'Consolas', monospace;        
+       41 +        font-weight: 500;                                     
+       42 +    }                                                         
+       43 +    .kpi-value {                                              
+       44 +        font-size: 28px;                                      
+       45 +        font-weight: 700;                                     
+       46 +        background: linear-gradient(135deg, #00e5ff, #7c4dff);
+       47 +        -webkit-background-clip: text;                        
+       48 +        -webkit-text-fill-color: transparent;                 
+       49 +        background-clip: text;                                
+       50 +        font-family: 'SF Mono', 'Consolas', monospace;        
+       51 +    }                                                         
+       52 +                                                              
+       53 +    /* 侧边栏 */                                              
+       54 +    section[data-testid="stSidebar"] {                        
+       55 +        background: rgba(10, 14, 23, 0.95);                   
+       56 +        border-right: 1px solid rgba(0, 200, 255, 0.1);       
+       57 +    }                                                         
+       58 +    section[data-testid="stSidebar"] .stMarkdown h3 {         
+       59 +        color: #00e5ff;                                       
+       60 +        font-family: 'SF Mono', 'Consolas', monospace;        
+       61 +    }                                                         
+       62 +                                                              
+       63 +    /* 标题 */                                                
+       64 +    .tech-title {                                             
+       65 +        background: linear-gradient(135deg, #00e5ff, #7c4dff, 
+          +#ff0055);                                                     
+       66 +        -webkit-background-clip: text;                        
+       67 +        -webkit-text-fill-color: transparent;                 
+       68 +        background-clip: text;                                
+       69 +        font-size: 2.5rem;                                    
+       70 +        font-weight: 800;                                     
+       71 +        margin-bottom: 0;                                     
+       72 +        line-height: 1.2;                                     
+       73 +    }                                                         
+       74 +    .tech-subtitle {                                          
+       75 +        color: rgba(0, 229, 255, 0.5);                        
+       76 +        font-size: 0.95rem;                                   
+       77 +        margin-top: 4px;                                      
+       78 +        letter-spacing: 3px;                                  
+       79 +        font-weight: 300;                                     
+       80 +    }                                                         
+       81 +                                                              
+       82 +    /* 子标题 */                                              
+       83 +    .tech-subheader {                                         
+       84 +        color: #00e5ff;                                       
+       85 +        border-left: 3px solid #7c4dff;                       
+       86 +        padding-left: 12px;                                   
+       87 +        font-size: 1.3rem;                                    
+       88 +        font-weight: 600;                                     
+       89 +        margin: 0;                                            
+       90 +    }                                                         
+       91 +                                                              
+       92 +    /* 图例 */                                                
+       93 +    .tech-legend {                                            
+       94 +        background: rgba(10, 14, 23, 0.9);                    
+       95 +        border: 1px solid rgba(0, 200, 255, 0.15);            
+       96 +        border-radius: 8px;                                   
+       97 +        padding: 8px 16px;                                    
+       98 +        color: #aaa;                                          
+       99 +        font-size: 13px;                                      
+      100 +        text-align: center;                                   
+      101 +        margin-top: 8px;                                      
+      102 +    }                                                         
+      103 +    .legend-item {                                            
+      104 +        display: inline-block;                                
+      105 +        margin: 0 16px;                                       
+      106 +    }                                                         
+      107 +    .legend-dot {                                             
+      108 +        display: inline-block;                                
+      109 +        width: 10px;                                          
+      110 +        height: 10px;                                         
+      111 +        border-radius: 50%;                                   
+      112 +        margin-right: 6px;                                    
+      113 +        vertical-align: middle;                               
+      114 +    }                                                         
+      115 +                                                              
+      116 +    /* 滚动条 */                                              
+      117 +    ::-webkit-scrollbar { width: 6px; height: 6px; }          
+      118 +    ::-webkit-scrollbar-track { background: #0a0e17; }        
+      119 +    ::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 
+          +0.25); border-radius: 3px; }                                  
+      120 +    ::-webkit-scrollbar-thumb:hover { background: rgba(0, 200,
+          + 255, 0.4); }                                                 
+      121 +                                                              
+      122 +    /* divider */                                             
+      123 +    hr {                                                      
+      124 +        border-color: rgba(0, 200, 255, 0.08) !important;     
+      125 +        margin: 1.5em 0 !important;                           
+      126 +    }                                                         
+      127 +                                                              
+      128 +    /* 侧边栏控件微调 */                                      
+      129 +    .stSlider label, .stMultiSelect label, .stRadio label, .st
+          +Checkbox label {                                              
+      130 +        color: #ccc !important;                               
+      131 +    }                                                         
+      132 +</style>                                                      
+      133 +""", unsafe_allow_html=True)                                  
+      134 +                                                              
+      135  # ==================== 标题 ====================
+       10 -st.title("📡 5G 信号可视化看板")                              
+       11 -st.markdown("基于 5G 路测数据的交互式信号质量分析平台")       
+      136 +st.markdown('<h1 class="tech-title">5G 信号可视化看板</h1>', u
+          +nsafe_allow_html=True)                                        
+      137 +st.markdown(                                                  
+      138 +    '<p class="tech-subtitle">✦ 基于 5G 路测数据的交互式信号质
+          +量分析平台 ✦</p>',                                            
+      139 +    unsafe_allow_html=True,                                   
+      140 +)                                                             
+      141  
+      142  # ==================== 数据加载 ====================
+      143  @st.cache_data
+      144  def load_data():
+       16 -    """从 data/signal_samples.csv 加载 5G 路测数据，返回 DataF
+          -rame"""                                                       
+      145 +    """从 CSV 加载 5G 路测数据"""                             
+      146      df = pd.read_csv("data/signal_samples.csv")
+      147      return df
+      148  
+      149 +                                                              
+      150  df = load_data()
+      151  
+       22 -# ==================== 颜色映射函数 ====================      
+      152 +# ==================== 科技风格颜色映射 ====================  
+      153 +# 赛博朋克配色：优秀→青 Cyan · 中等→电紫 Purple · 弱覆盖→霓虹 
+          +粉 Magenta                                                    
+      154 +CYAN = [0, 229, 255]       # #00E5FF  优秀                    
+      155 +PURPLE = [170, 0, 255]     # #AA00FF  中等                    
+      156 +MAGENTA = [255, 0, 85]     # #FF0055  弱覆盖                  
+      157 +                                                              
+      158  def classify_rsrp(rsrp):
+       24 -    """根据 RSRP 值返回信号等级标签（优秀/中等/弱覆盖）"""    
+      159 +    """根据 RSRP 返回信号等级标签"""                          
+      160      if rsrp > -90:
+      161          return "优秀"
+      162      elif rsrp < -110:
+     ...
+      164      else:
+      165          return "中等"
+      166  
+       32 -# 在 DataFrame 中预计算 RGBA 颜色分量                         
+       33 -# pydeck 要求颜色值为原生 Python int 类型，避免 numpy 类型序列
+          -化报错                                                        
+       34 -df["color_r"] = df["RSRP_dBm"].apply(lambda v: 46 if v > -90 e
+          -lse (231 if v < -110 else 243))                               
+       35 -df["color_g"] = df["RSRP_dBm"].apply(lambda v: 204 if v > -90 
+          -else (76 if v < -110 else 156))                               
+       36 -df["color_b"] = df["RSRP_dBm"].apply(lambda v: 113 if v > -90 
+          -else (60 if v < -110 else 18))                                
+      167 +df["color_r"] = df["RSRP_dBm"].apply(                         
+      168 +    lambda v: CYAN[0] if v > -90 else (MAGENTA[0] if v < -110 
+          +else PURPLE[0])                                               
+      169 +)                                                             
+      170 +df["color_g"] = df["RSRP_dBm"].apply(                         
+      171 +    lambda v: CYAN[1] if v > -90 else (MAGENTA[1] if v < -110 
+          +else PURPLE[1])                                               
+      172 +)                                                             
+      173 +df["color_b"] = df["RSRP_dBm"].apply(                         
+      174 +    lambda v: CYAN[2] if v > -90 else (MAGENTA[2] if v < -110 
+          +else PURPLE[2])                                               
+      175 +)                                                             
+      176  df["color_a"] = 200
+      177  
+      178 +# 预计算 HeatmapLayer 权重列（归一化到 0~1，信号越强权重越高）
+      179 +df["weight"] = df["RSRP_dBm"].apply(lambda v: max(0.05, (v + 1
+          +20) / 50))                                                    
+      180 +                                                              
+      181  # ==================== 侧边栏筛选器 ====================
+       40 -st.sidebar.header("筛选条件")                                 
+      182 +st.sidebar.markdown("### ⚡ 筛选控制台")                      
+      183 +st.sidebar.markdown("---")                                    
+      184  
+      185  selected_bands = st.sidebar.multiselect(
+      186      "频段 Band",
+     ...
+      202      default=sorted(df["TerminalType"].unique()),
+      203  )
+      204  
+       62 -view_mode = st.sidebar.radio(                                 
+       63 -    "地图视图",                                               
+       64 -    options=["2D 散点图", "3D 柱状图"],                       
+       65 -    index=0,                                                  
+       66 -)                                                             
+      205 +view_mode = st.sidebar.radio("地图视图", options=["2D 散点图",
+          + "3D 柱状图"], index=0)                                       
+      206  
+       68 -# 应用筛选：频段 + RSRP 范围 + 终端类型                       
+      207 +show_heatmap = st.sidebar.checkbox("信号热力云", value=True)  
+      208 +                                                              
+      209 +st.sidebar.markdown("---")                                    
+      210 +st.sidebar.caption("🚀 Code with AI Contest · 5G 信号可视化") 
+      211 +                                                              
+      212 +# 应用筛选                                                    
+      213  filtered_df = df[
+       70 -    (df["Band"].isin(selected_bands)) &                       
+       71 -    (df["RSRP_dBm"].between(rsrp_min, rsrp_max)) &            
+       72 -    (df["TerminalType"].isin(selected_terminals))             
+       73 -]                                                             
+      214 +    (df["Band"].isin(selected_bands))                         
+      215 +    & (df["RSRP_dBm"].between(rsrp_min, rsrp_max))            
+      216 +    & (df["TerminalType"].isin(selected_terminals))           
+      217 +].copy()                                                      
+      218  
+       75 -# ==================== KPI 指标卡片 ====================      
+       76 -st.subheader("📊 数据概览")                                   
+      219 +# ==================== KPI 指标卡片（玻璃态效果） ============
+          +========                                                      
+      220 +st.markdown("---")                                            
+      221 +st.markdown('<p class="tech-subheader">数据概览</p>', unsafe_a
+          +llow_html=True)                                               
+      222  
+      223  col1, col2, col3, col4 = st.columns(4)
+      224 +                                                              
+      225  with col1:
+       80 -    st.metric("总采样点", f"{len(filtered_df):,}")            
+      226 +    st.markdown(                                              
+      227 +        f'<div class="kpi-card"><div class="kpi-title">总采样 
+          +点</div>'                                                     
+      228 +        f'<div class="kpi-value">{len(filtered_df):,}</div></d
+          +iv>',                                                         
+      229 +        unsafe_allow_html=True,                               
+      230 +    )                                                         
+      231  with col2:
+       82 -    st.metric("平均 RSRP", f"{filtered_df['RSRP_dBm'].mean():.
+          -2f} dBm")                                                     
+      232 +    val = filtered_df["RSRP_dBm"].mean()                      
+      233 +    st.markdown(                                              
+      234 +        f'<div class="kpi-card"><div class="kpi-title">平均 RS
+          +RP</div>'                                                     
+      235 +        f'<div class="kpi-value">{val:.1f} dBm</div></div>',  
+      236 +        unsafe_allow_html=True,                               
+      237 +    )                                                         
+      238  with col3:
+       84 -    st.metric("平均 SINR", f"{filtered_df['SINR_dB'].mean():.2
+          -f} dB")                                                       
+      239 +    val = filtered_df["SINR_dB"].mean()                       
+      240 +    st.markdown(                                              
+      241 +        f'<div class="kpi-card"><div class="kpi-title">平均 SI
+          +NR</div>'                                                     
+      242 +        f'<div class="kpi-value">{val:.1f} dB</div></div>',   
+      243 +        unsafe_allow_html=True,                               
+      244 +    )                                                         
+      245  with col4:
+       86 -    st.metric("平均下载速率", f"{filtered_df['Download_Mbps'].
+          -mean():.2f} Mbps")                                            
+      246 +    val = filtered_df["Download_Mbps"].mean()                 
+      247 +    st.markdown(                                              
+      248 +        f'<div class="kpi-card"><div class="kpi-title">平均下 
+          +载速率</div>'                                                 
+      249 +        f'<div class="kpi-value">{val:.1f} Mbps</div></div>', 
+      250 +        unsafe_allow_html=True,                               
+      251 +    )                                                         
+      252  
+       88 -st.divider()                                                  
+      253 +st.markdown("---")                                            
+      254  
+       90 -# ==================== 信号地图（2D/3D 切换） ================
+          -====                                                          
+       91 -st.subheader("🗺️ 5G 信号覆盖地图")                            
+      255 +# ==================== 信号地图 ====================          
+      256 +st.markdown('<p class="tech-subheader">5G 信号覆盖地图</p>', u
+          +nsafe_allow_html=True)                                        
+      257  
+       93 -# 以筛选后数据的中心作为地图初始视角                          
+      258  view_center_lat = filtered_df["Latitude"].mean()
+      259  view_center_lon = filtered_df["Longitude"].mean()
+      260  
+      261 +map_layers = []                                               
+      262 +                                                              
+      263 +# ── 热力云层（背景辉光效果） ──                              
+      264 +if show_heatmap and len(filtered_df) > 1:                     
+      265 +    heatmap_layer = pdk.Layer(                                
+      266 +        "HeatmapLayer",                                       
+      267 +        data=filtered_df,                                     
+      268 +        get_position=["Longitude", "Latitude"],               
+      269 +        aggregation="MEAN",                                   
+      270 +        radiusPixels=40,                                      
+      271 +        intensity=1.8,                                        
+      272 +        threshold=0.02,                                       
+      273 +        colorRange=[                                          
+      274 +            [0, 0, 0, 0],                                     
+      275 +            [0, 180, 255, 60],                                
+      276 +            [0, 229, 255, 90],                                
+      277 +            [170, 0, 255, 100],                               
+      278 +            [255, 0, 85, 110],                                
+      279 +        ],                                                    
+      280 +        get_weight="weight",                                  
+      281 +    )                                                         
+      282 +    map_layers.append(heatmap_layer)                          
+      283 +                                                              
+      284 +# ── 2D 或 3D 主图层 ──                                       
+      285  if view_mode == "2D 散点图":
+       98 -    # 2D 散点图层，颜色根据 RSRP 强度映射为绿/橙/红           
+       99 -    map_layer = pdk.Layer(                                    
+      286 +    scatter_layer = pdk.Layer(                                
+      287          "ScatterplotLayer",
+      288          data=filtered_df,
+      289          get_position=["Longitude", "Latitude"],
+      290          get_fill_color=["color_r", "color_g", "color_b", "colo
+           r_a"],
+      291          get_radius=120,
+      292          pickable=True,
+      106 -        opacity=0.8,                                          
+      293 +        opacity=0.85,                                         
+      294          radius_min_pixels=3,
+      108 -        radius_max_pixels=15,                                 
+      295 +        radius_max_pixels=14,                                 
+      296 +        stroked=True,                                         
+      297 +        get_line_color=["color_r", "color_g", "color_b", 255],
+      298 +        line_width_min_pixels=1,                              
+      299      )
+      300 +    map_layers.append(scatter_layer)                          
+      301 +                                                              
+      302      view_state = pdk.ViewState(
+      303          latitude=view_center_lat,
+      304          longitude=view_center_lon,
+     ...
+      306          pitch=0,
+      307      )
+      308  else:
+      117 -    # 3D 柱状图层：高度映射下载速率，柱体颜色仍按 RSRP 强度   
+      118 -    map_layer = pdk.Layer(                                    
+      309 +    column_layer = pdk.Layer(                                 
+      310          "ColumnLayer",
+      311          data=filtered_df,
+      312          get_position=["Longitude", "Latitude"],
+      313          get_elevation="Download_Mbps",
+      123 -        elevation_scale=0.5,                                  
+      124 -        radius=80,                                            
+      125 -        get_fill_color=["color_r", "color_g", "color_b", "colo
+          -r_a"],                                                        
+      314 +        elevation_scale=0.6,                                  
+      315 +        radius=70,                                            
+      316 +        get_fill_color=["color_r", "color_g", "color_b", 200],
+      317          pickable=True,
+      318          extruded=True,
+      128 -        coverage=0.8,                                         
+      319 +        coverage=0.85,                                        
+      320 +        diskResolution=24,                                    
+      321      )
+      322 +    map_layers.append(column_layer)                           
+      323 +                                                              
+      324      view_state = pdk.ViewState(
+      325          latitude=view_center_lat,
+      326          longitude=view_center_lon,
+      327          zoom=12,
+      328          pitch=45,
+      135 -        bearing=10,                                           
+      329 +        bearing=15,                                           
+      330      )
+      331  
+      332  st.pydeck_chart(
+      333      pdk.Deck(
+      140 -        layers=[map_layer],                                   
+      334 +        layers=map_layers,                                    
+      335          initial_view_state=view_state,
+      142 -        map_style="mapbox://styles/mapbox/light-v10",         
+      336 +        map_style="mapbox://styles/mapbox/dark-v10",          
+      337          tooltip={
+      338              "html": """
+      145 -            <b>Cell ID:</b> {CellID}<br/>                     
+      146 -            <b>Band:</b> {Band}<br/>                          
+      147 -            <b>RSRP:</b> {RSRP_dBm} dBm<br/>                  
+      148 -            <b>SINR:</b> {SINR_dB} dB<br/>                    
+      149 -            <b>下载速率:</b> {Download_Mbps} Mbps<br/>        
+      150 -            <b>终端:</b> {TerminalType}                       
+      339 +            <div style="font-family:'SF Mono',Consolas,monospa
+          +ce;background:rgba(10,14,23,0.94);                            
+      340 +                        border:1px solid rgba(0,229,255,0.25);
+          +border-radius:8px;padding:12px;">                             
+      341 +                <div style="color:#00e5ff;font-size:13px;font-
+          +weight:600;margin-bottom:8px;                                 
+      342 +                            border-bottom:1px solid rgba(0,229
+          +,255,0.15);padding-bottom:6px;">                              
+      343 +                    📡 信号详情                               
+      344 +                </div>                                        
+      345 +                <div style="display:grid;grid-template-columns
+          +:auto 1fr;gap:3px 14px;font-size:12px;">                      
+      346 +                    <span style="color:#888;">Cell ID</span>  
+      347 +                    <span style="color:#fff;text-align:right;"
+          +>{CellID}</span>                                              
+      348 +                    <span style="color:#888;">频段</span>     
+      349 +                    <span style="color:#aa00ff;text-align:righ
+          +t;">{Band}</span>                                             
+      350 +                    <span style="color:#888;">RSRP</span>     
+      351 +                    <span style="color:#ff0055;text-align:righ
+          +t;">{RSRP_dBm} dBm</span>                                     
+      352 +                    <span style="color:#888;">SINR</span>     
+      353 +                    <span style="color:#00e5ff;text-align:righ
+          +t;">{SINR_dB} dB</span>                                       
+      354 +                    <span style="color:#888;">下载速率</span> 
+      355 +                    <span style="color:#00ff88;text-align:righ
+          +t;">{Download_Mbps} Mbps</span>                               
+      356 +                    <span style="color:#888;">终端</span>     
+      357 +                    <span style="color:#ffaa00;text-align:righ
+          +t;">{TerminalType}</span>                                     
+      358 +                </div>                                        
+      359 +            </div>                                            
+      360              """,
+      152 -            "style": {"backgroundColor": "steelblue", "color":
+          - "white"},                                                    
+      361 +            "style": {"backgroundColor": "transparent", "borde
+          +r": "none", "boxShadow": "none"},                             
+      362          },
+      363      ),
+      364      use_container_width=True,
+      365  )
+      366  
+      158 -st.caption("🟢 绿色: RSRP > -90 dBm (优秀)  |  🟠 橙色: -110 ~
+          - -90 dBm (中等)  |  🔴 红色: RSRP < -110 dBm (弱覆盖)")       
+      367 +# 图例                                                        
+      368 +st.markdown(                                                  
+      369 +    '<div class="tech-legend">'                               
+      370 +    '<span class="legend-item"><span class="legend-dot" style=
+          +"background:#00e5ff;box-shadow:0 0 8px #00e5ff;"></span> 优秀 
+          +&gt; -90 dBm</span>'                                          
+      371 +    '<span class="legend-item"><span class="legend-dot" style=
+          +"background:#aa00ff;box-shadow:0 0 8px #aa00ff;"></span> 中等 
+          +-110 ~ -90 dBm</span>'                                        
+      372 +    '<span class="legend-item"><span class="legend-dot" style=
+          +"background:#ff0055;box-shadow:0 0 8px #ff0055;"></span> 弱覆 
+          +盖 &lt; -110 dBm</span>'                                      
+      373 +    '</div>',                                                 
+      374 +    unsafe_allow_html=True,                                   
+      375 +)                                                             
+      376  
+      160 -st.divider()                                                  
+      377 +st.markdown("---")                                            
+      378  
+      162 -# ==================== 数据概览图表 ====================      
+      163 -st.subheader("📈 数据统计分析")                               
+      379 +# ==================== 数据统计分析 ====================      
+      380 +st.markdown('<p class="tech-subheader">数据统计分析</p>', unsa
+          +fe_allow_html=True)                                           
+      381  
+      382  chart_col1, chart_col2 = st.columns(2)
+      383  
+      384  with chart_col1:
+      168 -    # 各频段基站数量柱状图（以 CellID 去重计数）              
+      385      band_counts = filtered_df.groupby("Band")["CellID"].nuniqu
+           e().reset_index()
+      386      band_counts.columns = ["频段", "基站数量"]
+      387      fig_bar = px.bar(
+     ...
+      389          x="频段",
+      390          y="基站数量",
+      391          color="频段",
+      176 -        color_discrete_map={"n28": "#3498DB", "n41": "#9B59B6"
+          -, "n78": "#1ABC9C"},                                          
+      392 +        color_discrete_map={"n28": "#00e5ff", "n41": "#aa00ff"
+          +, "n78": "#ff0055"},                                          
+      393          title="各频段基站数量分布",
+      394 +        template="plotly_dark",                               
+      395      )
+      179 -    fig_bar.update_layout(showlegend=False, height=400)       
+      396 +    fig_bar.update_layout(                                    
+      397 +        showlegend=False,                                     
+      398 +        height=400,                                           
+      399 +        paper_bgcolor="rgba(0,0,0,0)",                        
+      400 +        plot_bgcolor="rgba(0,0,0,0)",                         
+      401 +        font=dict(color="#ccc", size=12),                     
+      402 +        title=dict(text="各频段基站数量分布", font=dict(color=
+          +"#00e5ff", size=16), x=0.5),                                  
+      403 +        margin=dict(t=40),                                    
+      404 +    )                                                         
+      405 +    fig_bar.update_traces(marker=dict(line=dict(width=0)))    
+      406      st.plotly_chart(fig_bar, use_container_width=True)
+      407  
+      408  with chart_col2:
+      183 -    # 终端类型占比饼图                                        
+      409      terminal_counts = filtered_df["TerminalType"].value_counts
+           ().reset_index()
+      410      terminal_counts.columns = ["终端类型", "数量"]
+      411      fig_pie = px.pie(
+     ...
+      413          names="终端类型",
+      414          values="数量",
+      415          color="终端类型",
+      191 -        color_discrete_map={"Smartphone": "#E74C3C", "CPE": "#
+          -2ECC71", "IoT": "#F39C12"},                                   
+      416 +        color_discrete_map={"Smartphone": "#00e5ff", "CPE": "#
+          +aa00ff", "IoT": "#ff0055"},                                   
+      417          title="终端类型占比分布",
+      418          hole=0.4,
+      419 +        template="plotly_dark",                               
+      420      )
+      195 -    fig_pie.update_layout(height=400)                         
+      421 +    fig_pie.update_layout(                                    
+      422 +        height=400,                                           
+      423 +        paper_bgcolor="rgba(0,0,0,0)",                        
+      424 +        plot_bgcolor="rgba(0,0,0,0)",                         
+      425 +        font=dict(color="#ccc", size=12),                     
+      426 +        title=dict(text="终端类型占比分布", font=dict(color="#
+          +00e5ff", size=16), x=0.5),                                    
+      427 +        margin=dict(t=40),                                    
+      428 +    )                                                         
+      429 +    fig_pie.update_traces(textposition="inside", textinfo="per
+          +cent+label")                                                  
+      430      st.plotly_chart(fig_pie, use_container_width=True)
+      431  
+      198 -st.divider()                                                  
+      432 +st.markdown("---")                                            
+      433  
+      434  # ==================== 数据表格预览 ====================
+      435  with st.expander("📋 查看原始数据", expanded=False):
+
+● Now update the tests to match the new color palette.
+
+● Update(test_app.py)
+  ⎿  Added 4 lines, removed 4 lines
+      34  
+      35  
+      36  def get_color_rgb(rsrp):
+      37 -    """与 app.py 保持一致的 RSRP 颜色映射逻辑"""               
+      37 +    """与 app.py 保持一致的 RSRP 颜色映射逻辑（科技风配色）""" 
+      38      if rsrp > -90:
+      39 -        return [46, 204, 113]   # 绿色                         
+      39 +        return [0, 229, 255]     # 青色 Cyan  优秀             
+      40      elif rsrp < -110:
+      41 -        return [231, 76, 60]    # 红色                         
+      41 +        return [255, 0, 85]      # 霓虹粉 Magenta  弱覆盖      
+      42      else:
+      43 -        return [243, 156, 18]   # 橙色                         
+      43 +        return [170, 0, 255]     # 电紫 Purple  中等           
+      44  
+      45  
+      46  class TestColorMapping:
+
+● Update(test_app.py)
+  ⎿  Added 1 line, removed 1 line
+      49      def test_excellent_signal(self):
+      50          """RSRP > -90 dBm 应标记为优秀并返回绿色"""
+      51          assert classify_rsrp(-89) == "优秀"
+      52 -        assert get_color_rgb(-89) == [46, 204, 113]            
+      52 +        assert get_color_rgb(-89) == [0, 229, 255]             
+      53  
+      54      def test_poor_signal(self):
+      55          """RSRP < -110 dBm 应标记为弱覆盖并返回红色"""
+● Update(test_app.py)
+  ⎿  Added 1 line, removed 1 line
+      54      def test_poor_signal(self):
+      55          """RSRP < -110 dBm 应标记为弱覆盖并返回红色"""
+      56          assert classify_rsrp(-111) == "弱覆盖"
+      57 -        assert get_color_rgb(-111) == [231, 76, 60]            
+      57 +        assert get_color_rgb(-111) == [255, 0, 85]             
+      58  
+      59      def test_medium_signal(self):
+      60          """-110 <= RSRP <= -90 dBm 应标记为中等并返回橙色"""
+
+● Update(test_app.py)
+  ⎿  Added 1 line, removed 1 line
+      59      def test_medium_signal(self):
+      60          """-110 <= RSRP <= -90 dBm 应标记为中等并返回橙色"""
+      61          assert classify_rsrp(-100) == "中等"
+      62 -        assert get_color_rgb(-100) == [243, 156, 18]           
+      62 +        assert get_color_rgb(-100) == [170, 0, 255]            
+      63  
+      64      def test_boundary_negative_90(self):
+      65          """边界值 -90 dBm 应归为中等（橙色）"""
+
+● Update(test_app.py)
+  ⎿  Added 1 line, removed 1 line
+      64      def test_boundary_negative_90(self):
+      65          """边界值 -90 dBm 应归为中等（橙色）"""
+      66          assert classify_rsrp(-90) == "中等"
+      67 -        assert get_color_rgb(-90) == [243, 156, 18]            
+      67 +        assert get_color_rgb(-90) == [170, 0, 255]             
+      68  
+      69      def test_boundary_negative_110(self):
+      70          """边界值 -110 dBm 应归为中等（橙色）"""
+
+● Update(test_app.py)
+  ⎿  Added 1 line, removed 1 line
+      69      def test_boundary_negative_110(self):
+      70          """边界值 -110 dBm 应归为中等（橙色）"""
+      71          assert classify_rsrp(-110) == "中等"
+      72 -        assert get_color_rgb(-110) == [243, 156, 18]           
+      72 +        assert get_color_rgb(-110) == [170, 0, 255]            
+      73  
+      74  
+      75  # ==================== 筛选逻辑测试 ====================
+
+● Now run the tests to verify everything passes.
+
+● Bash(cd "C:\Users\yihan\OneDrive\桌面\ai-test\code-with-ai-contest" && python
+      -m pytest test_app.py -v 2>&1)
+  ⎿  ============================= test session starts ====================
+     =========
+     platform win32 -- Python 3.13.11, pytest-9.0.3, pluggy-1.5.0 -- C:\Use
+     … +20 lines (ctrl+o to expand)
+
+● All 14 tests pass. Now let me verify the app imports cleanly.
+
+● Bash(cd "C:\Users\yihan\OneDrive\桌面\ai-test\code-with-ai-contest" && python
+      -c "import ast; ast.parse(open('app.py').read()); print('Syntax OK')"
+      2>&1)
+  ⎿  Error: Exit code 1
+     Traceback (most recent call last):
+       File "<string>", line 1, in <module>
+         import ast; ast.parse(open('app.py').read()); print('Syntax OK')
+                               ~~~~~~~~~~~~~~~~~~~^^
+       File "C:\Users\yihan\miniconda3\Lib\encodings\cp1252.py", line 23, in 
+     decode
+         return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+                ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 120:
+      character maps to <undefined>
+
+● Bash(cd "C:\Users\yihan\OneDrive\桌面\ai-test\code-with-ai-contest" && python
+      -c "import ast; ast.parse(open('app.py', encoding='utf-8').read());
+      print('Syntax OK')" 2…)
+  ⎿  Syntax OK
+
+● Bash(cd "C:\Users\yihan\OneDrive\桌面\ai-test\code-with-ai-contest" &&
+      streamlit run app.py --server.headless true 2>&1 &
+      sleep 5 && curl -s http://localhost:8501/_stc…)
+  ⎿    You can now view your Streamlit app in your browser.
+
+       Local URL: http://localhost:8502
+     … +4 lines (ctrl+o to expand)
+  ⎿  (timeout 15s)
+
+● App launches successfully and health endpoint returns OK. Let me finalize.
+
+● 全部完成。以下是本次改进的内容总结：
+
+  地图视觉效果增强
+
+  1. 暗色科技基底
+  - 地图底图切换为 dark-v10 暗色主题
+  - 全页暗色科技风 CSS（#0a0e17 深空底色）
+  - 所有控件、卡片、图表统一适配暗色主题
+
+  2. 赛博朋克配色方案
+
+  ┌──────────┬──────────────┬──────────────────────────┐
+  │ 信号等级 │    旧颜色    │          新颜色          │
+  ├──────────┼──────────────┼──────────────────────────┤
+  │ 优秀     │ 绿色 #2ECC71 │ 青色 #00E5FF（霓虹光晕） │
+  ├──────────┼──────────────┼──────────────────────────┤
+  │ 中等     │ 橙色 #F39C12 │ 电紫 #AA00FF             │
+  ├──────────┼──────────────┼──────────────────────────┤
+  │ 弱覆盖   │ 红色 #E74C3C │ 霓虹粉 #FF0055           │
+  └──────────┴──────────────┴──────────────────────────┘
+
+  3. 多层地图复合渲染
+  - HeatmapLayer 热力云（新增）：信号强度以辉光云效果呈现，科技感拉满
+  - ScatterplotLayer 描边增强（2D）：点带发光边框，更清晰
+  - ColumnLayer 平滑化（3D）：柱体更圆滑，配合暗色底图更突出
+
+  4. 玻璃态 UI
+  - KPI 卡片：backdrop-filter: blur 玻璃拟态 + 渐变文字 + 悬浮发光动效
+  - 工具提示：暗色半透明 + 网格布局 + 按数据类型配色的值
+  - 图例：带霓虹光晕色块
+
+  5. Plotly 暗色图表
+  - 双图表统一 plotly_dark 模板，透明背景，科技色系
+  - 柱状图/饼图颜色与地图配色一致（青/紫/粉）
+
+  6. 代码质量
+  - 14 项单元测试全部通过
+  - 筛选逻辑完全保留，新增热力云开关
+  - 新增 weight 列预计算，避免运行时重复计算
+
+✻ Cogitated for 6m 37s
+
+> 启动项目                                                                      
+
+● Bash(cd "C:\Users\yihan\OneDrive\桌面\ai-test\code-with-ai-contest" &&
+      streamlit run app.py 2>&1)
+  ⎿  Running in the background (↓ to manage)
+
+● Task Output(non-blocking) bzvi6u71v  ⎿  
+       You can now view your Streamlit app in your browser.
+     … +2 lines (ctrl+o to expand)
+
+● 应用已启动，访问地址：http://localhost:8503
+
+  仪表板升级要点：
+  - 暗色科技风主题 + 霓虹配色（青/紫/粉）
+  - Heatmap 热力云辉光效果
+  - 玻璃态 KPI 卡片 + 悬浮动效
+  - 带光晕的图例
+
+  侧边栏新增了 信号热力云 开关，可以随时开启/关闭辉光背景层。
+
+✻ Cogitated for 8s
